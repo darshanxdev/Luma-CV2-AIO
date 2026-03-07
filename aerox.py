@@ -95,9 +95,9 @@ class DatabaseTestFilter (logging .Filter ):
 
 for logger_name in ['discord','discord.http','discord.gateway','discord.client']:
     std_logger =logging .getLogger (logger_name )
+    std_logger .propagate = True
+    std_logger .handlers = [] # Clear any existing handlers
     std_logger .addFilter (DatabaseTestFilter ())
-    for handler in std_logger .handlers :
-        handler .addFilter (DatabaseTestFilter ())
 
 
 logging .getLogger ().addFilter (DatabaseTestFilter ())
